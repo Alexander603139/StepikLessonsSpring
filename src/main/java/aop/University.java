@@ -18,10 +18,11 @@ public class University {
         students.add(st1);
         students.add(st2);
         students.add(st3);
-
     }
 
     public List<Student> getStudents(){
+        System.out.println("Начало работы метода getStudents()");
+//        System.out.println(students.get(3));
         System.out.println("Информация о методе: getStudents()");
         System.out.println(students);
         return students;

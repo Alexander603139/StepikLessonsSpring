@@ -1,6 +1,7 @@
 package aop.aspects;
 
 import aop.Student;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -32,5 +33,10 @@ public class UniLogAspect {
 
         System.out.println("afterGetLogAdv: логгируем получение списка "
                 + "студентов после работы метода getStudent()");
+    }
+
+    @After("execution(* getStudent())")
+    public void afterGetStudentsLogAdv(){
+        System.out.println("afterGetStudentsLogAdv: логгируем нормальное окончание или выброс исключения");
     }
 }
