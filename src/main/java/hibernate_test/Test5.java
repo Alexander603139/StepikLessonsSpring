@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Test1 {
+public class Test5 {
 
     public static void main(String[] args) {
         // создаем SessionFactory
@@ -17,19 +17,15 @@ public class Test1 {
         try {
             // создаем сессию
             Session session = factory.getCurrentSession();
-            // создаем объект
-            Employee emp = new Employee("Alexandr", "Ivanov", "IT", 600);
+            session.beginTransaction();
+//            Employee emp = session.get(Employee.class, 1);
+//            emp.setSalary(1500);
+            session.createQuery("update Employee set salary=1000 where name='Alexandr'").executeUpdate();
 
-            session.beginTransaction(); // начинаем транзакцию
-            session.persist(emp); // сохраняем объект = SQL-команда insert
-            session.getTransaction().commit(); // закрываем транзакцию
-
+            session.getTransaction().commit();
             System.out.println("Done!");
-            System.out.println(emp);
         } finally {
-            factory.close(); // закрываем SessionFactory
+            factory.close();
         }
-
-
     }
 }
