@@ -1,5 +1,6 @@
-package hibernate_test_2.entity;
+package hibernate_one_to_many_bi.entity;
 
+import hibernate_one_to_one.entity.Detail;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,23 +22,20 @@ public class Employee {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "department")
-    private String department;
-
     @Column(name = "salary")
     private int salary;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "details_id")
-    private Detail empDetail;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     public Employee() {
     }
 
-    public Employee(String name, String surname, String department, int salary) {
+
+    public Employee(String name, String surname, int salary) {
         this.name = name;
         this.surname = surname;
-        this.department = department;
         this.salary = salary;
     }
 
@@ -47,7 +45,6 @@ public class Employee {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", department='" + department + '\'' +
                 ", salary=" + salary +
                 '}';
     }

@@ -1,4 +1,4 @@
-package hibernate_test_2.entity;
+package hibernate_one_to_one.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -23,6 +23,9 @@ public class Detail {
 
     @Column(name = "email")
     private String email;
+
+    @OneToOne(mappedBy = "empDetail", cascade = CascadeType.ALL)
+    public Employee employee;
 
     public Detail() {
     }
